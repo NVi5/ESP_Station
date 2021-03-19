@@ -10,16 +10,21 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '20.10.5'
 
-  - task: DockerInstaller@0
-    inputs:
-      dockerVersion: '20.10.5'
+- script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
+  displayName: 'Build project using espressif/idf image'
 
-  - script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
-    displayName: 'Build project using espressif/idf image'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'build'
+    Contents: 'esp32.bin'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: 'Build.Repository.LocalPath/build/esp32.bin'
-      artifact: 'esp32.bin'
-      publishLocation: 'pipeline'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

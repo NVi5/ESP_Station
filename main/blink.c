@@ -15,7 +15,12 @@
 /* Can use project configuration menu (idf.py menuconfig) to choose the GPIO to blink,
    or you can edit the following line and set a number here.
 */
-#define BLINK_GPIO CONFIG_BLINK_GPIO
+extern const uint8_t server_root_cert_pem_start[] asm("_binary_cert_pem_start");
+extern const uint8_t server_root_cert_pem_end[]   asm("_binary_cert_pem_end");
+
+#define OTA_VERSION "https://esp32update.rf.gd/uploads/latestBuildVersion.txt"
+#define OTA_FILE    "https://esp32update.rf.gd/uploads/esp32.bin"
+#define BLINK_GPIO  CONFIG_BLINK_GPIO
 
 void app_main(void)
 {
@@ -33,6 +38,7 @@ void app_main(void)
 	printf(SSID"\n");
 	printf(PASS"\n");
 	printf("%d\n", BUILD_VERSION);
+	printf("%s\n", server_root_cert_pem_start);
 	printf("Turning off the LED\n");
         gpio_set_level(BLINK_GPIO, 0);
         vTaskDelay(1000 / portTICK_PERIOD_MS);

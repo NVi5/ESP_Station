@@ -12,6 +12,7 @@ pool:
 steps:
 - task: AzureKeyVault@1
   inputs:
+    ConnectedServiceName: 'Azure for Students(f105e12c-95aa-4ce4-b010-45af35b63a6d)'
     KeyVaultName: 'jwolowiec'
     SecretsFilter: '*'
     RunAsPreJob: false

@@ -13,6 +13,8 @@ steps:
   - script: ls
     displayName: 'Check folders'
 
+  - script: echo $PWD
+    displayName: 'Check path'
   - task: DockerInstaller@0
     inputs:
       dockerVersion: '20.10.5'
@@ -22,6 +24,6 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(Pipeline.Workspace)/build/esp32.bin'
+      targetPath: '$PWD/build/esp32.bin'
       artifact: 'esp32.bin'
       publishLocation: 'pipeline'

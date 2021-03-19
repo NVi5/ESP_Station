@@ -15,7 +15,7 @@ steps:
   inputs:
     dockerVersion: '20.10.5'
 
-- script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
+- script: docker run -v $PWD:/project -w /project espressif/idf idf.py build -DSSID="$(WIFISSID)" -DPASS="$(WIFIPASS)"
   displayName: 'BuildProject'
 
 - task: PowerShell@2
@@ -31,7 +31,7 @@ steps:
     credentialsOption: 'inputs'
     serverUrl: 'ftp://ftpupload.net'
     username: 'epiz_28190517'
-    password: '$(ftpPass)'
+    password: '$(FTPPASS)'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'
     filePatterns: '**'
     remoteDirectory: '/htdocs/uploads'

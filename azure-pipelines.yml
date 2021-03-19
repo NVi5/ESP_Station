@@ -15,23 +15,13 @@ steps:
     dockerVersion: '20.10.5'
 
 - script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
-  displayName: 'Build project using espressif/idf image'
-
-# - task: CopyFiles@2
-#   inputs:
-#     SourceFolder: 'build'
-#     Contents: 'esp32.bin'
-#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'BuildProject'
 
 - task: PowerShell@2
+  displayName: 'CopyBuildArtifacts'
   inputs:
     targetType: 'inline'
     script: 'Copy-Item -Path "build/esp32.bin" -Destination "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).bin"'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
 
 - task: FtpUpload@2
   inputs:
@@ -45,4 +35,10 @@ steps:
     clean: false
     cleanContents: false
     preservePaths: false
-    trustSSL: false'
+    trustSSL: false
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

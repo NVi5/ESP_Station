@@ -24,3 +24,6 @@ steps:
 
 - script: docker version
   displayName: 'Check docker version'
+
+- script: docker run espressif/idf idf.py --help
+  displayName: 'Run espressif/idf image'

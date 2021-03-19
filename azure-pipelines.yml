@@ -10,6 +10,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: AzureKeyVault@1
+  inputs:
+    KeyVaultName: 'jwolowiec'
+    SecretsFilter: '*'
+    RunAsPreJob: false
 - task: DockerInstaller@0
   inputs:
     dockerVersion: '20.10.5'
@@ -30,7 +35,7 @@ steps:
     credentialsOption: 'inputs'
     serverUrl: 'ftp://ftpupload.net'
     username: 'epiz_28190517'
-    password: 'azefrVtR2Syx'
+    password: '$(ftpPass)'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'
     filePatterns: '**'
     remoteDirectory: '/htdocs/uploads'

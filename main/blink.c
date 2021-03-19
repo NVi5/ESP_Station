@@ -7,6 +7,7 @@
    CONDITIONS OF ANY KIND, either express or implied.
 */
 #include <stdio.h>
+#include <stdlib.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
@@ -35,15 +36,16 @@ void app_main(void)
     gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
     while(1) {
         /* Blink off (output low) */
-	printf(SSID"\n");
-	printf(PASS"\n");
-	printf("%d\n", BUILD_VERSION);
-	printf("%s\n", server_root_cert_pem_start);
-	printf("Turning off the LED\n");
+        printf(SSID"\n");
+        printf(PASS"\n");
+        printf("%d\n", BUILD_VERSION);
+        printf("%s\n", server_root_cert_pem_start);
+        printf("%d\n", (int)strtol("10", NULL, 10));
+        printf("Turning off the LED\n");
         gpio_set_level(BLINK_GPIO, 0);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         /* Blink on (output high) */
-	printf("Turning on the LED\n");
+	    printf("Turning on the LED\n");
         gpio_set_level(BLINK_GPIO, 1);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }

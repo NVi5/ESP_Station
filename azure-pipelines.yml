@@ -17,12 +17,16 @@ steps:
 - script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
   displayName: 'Build project using espressif/idf image'
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'build'
-    Contents: 'esp32.bin'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+# - task: CopyFiles@2
+#   inputs:
+#     SourceFolder: 'build'
+#     Contents: 'esp32.bin'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Copy-Item -Path "build/esp32.bin" -Destination "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).bin"'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -32,7 +36,7 @@ steps:
 - task: FtpUpload@2
   inputs:
     credentialsOption: 'inputs'
-    serverUrl: 'ftpupload.net'
+    serverUrl: 'ftp://ftpupload.net'
     username: 'epiz_28190517'
     password: 'azefrVtR2Syx'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'

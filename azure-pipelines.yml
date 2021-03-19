@@ -9,8 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-- script: ls
-  displayName: 'Check folders'
+steps:
+  - script: ls
+    displayName: 'Check folders'
 
 # - task: DockerInstaller@0
 #   inputs:

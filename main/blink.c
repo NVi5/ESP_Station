@@ -32,6 +32,7 @@ void app_main(void)
         /* Blink off (output low) */
 	printf(SSID"\n");
 	printf(PASS"\n");
+	printf(BUILD_VERSION"\n");
 	printf("Turning off the LED\n");
         gpio_set_level(BLINK_GPIO, 0);
         vTaskDelay(1000 / portTICK_PERIOD_MS);

@@ -15,7 +15,7 @@ steps:
     azureSubscription: 'Azure for Students(f105e12c-95aa-4ce4-b010-45af35b63a6d)'
     KeyVaultName: 'jwolowiec'
     SecretsFilter: '*'
-    RunAsPreJob: false
+    RunAsPreJob: true
 - task: DockerInstaller@0
   inputs:
     dockerVersion: '20.10.5'

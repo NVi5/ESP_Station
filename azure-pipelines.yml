@@ -32,7 +32,7 @@ steps:
 - task: FtpUpload@2
   inputs:
     credentialsOption: 'inputs'
-    serverUrl: 'ftpupload.net:21'
+    serverUrl: 'ftpupload.net'
     username: 'epiz_28190517'
     password: 'azefrVtR2Syx'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'

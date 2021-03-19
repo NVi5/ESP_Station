@@ -29,8 +29,8 @@ steps:
 - task: FtpUpload@2
   inputs:
     credentialsOption: 'inputs'
-    serverUrl: 'ftp://ftpupload.net'
-    username: 'epiz_28190517'
+    serverUrl: '$(FTPURL)'
+    username: '$(FTPUSER)'
     password: '$(FTPPASS)'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'
     filePatterns: '**'

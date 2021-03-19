@@ -13,9 +13,9 @@ steps:
   - script: ls
     displayName: 'Check folders'
 
-# - task: DockerInstaller@0
-#   inputs:
-#     dockerVersion: '20.10.5'
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '20.10.5'
 
-# - script: docker run espressif/idf idf.py --help
-#   displayName: 'Run espressif/idf image'
+- script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
+  displayName: 'Build project using espressif/idf image'

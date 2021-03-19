@@ -9,21 +9,12 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: ls
+  displayName: 'Check folders'
 
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '20.10.5'
+# - task: DockerInstaller@0
+#   inputs:
+#     dockerVersion: '20.10.5'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- script: docker version
-  displayName: 'Check docker version'
-
-- script: docker run espressif/idf idf.py --help
-  displayName: 'Run espressif/idf image'
+# - script: docker run espressif/idf idf.py --help
+#   displayName: 'Run espressif/idf image'

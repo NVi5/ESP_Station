@@ -28,3 +28,17 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
+- task: FtpUpload@2
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftpupload.net:21'
+    username: 'epiz_28190517'
+    password: 'azefrVtR2Syx'
+    rootDirectory: '$(Build.ArtifactStagingDirectory)'
+    filePatterns: '**'
+    remoteDirectory: '/htdocs/uploads/$(Build.BuildId)/'
+    clean: false
+    cleanContents: false
+    preservePaths: false
+    trustSSL: false'

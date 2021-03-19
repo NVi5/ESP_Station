@@ -18,10 +18,12 @@ steps:
   displayName: 'BuildProject'
 
 - task: PowerShell@2
-  displayName: 'CopyBuildArtifacts'
+  displayName: 'Prepare artifacts'
   inputs:
     targetType: 'inline'
-    script: 'Copy-Item -Path "build/esp32.bin" -Destination "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).bin"'
+    script: |
+      Copy-Item -Path "build/esp32.bin" -Destination "$(Build.ArtifactStagingDirectory)"
+      New-Item "$(Build.ArtifactStagingDirectory)\latestBuildVersion.txt" -ItemType File -Value "$(Build.BuildId)"
 
 - task: FtpUpload@2
   inputs:
@@ -31,9 +33,8 @@ steps:
     password: 'azefrVtR2Syx'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'
     filePatterns: '**'
-    remoteDirectory: '/htdocs/uploads/$(Build.BuildId)/'
-    clean: false
-    cleanContents: false
+    remoteDirectory: '/htdocs/uploads'
+    clean: true
     preservePaths: false
     trustSSL: false
 

@@ -19,3 +19,9 @@ steps:
 
   - script: docker run -v $PWD:/project -w /project espressif/idf idf.py build
     displayName: 'Build project using espressif/idf image'
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Pipeline.Workspace)/build/esp32.bin'
+      artifact: 'esp32.bin'
+      publishLocation: 'pipeline'

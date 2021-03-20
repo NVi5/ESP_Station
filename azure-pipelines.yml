@@ -19,7 +19,7 @@ steps:
   displayName: 'BuildProject'
 
 - task: PowerShell@2
-  displayName: 'Prepare artifacts'
+  displayName: 'PrepareArtifacts'
   inputs:
     targetType: 'inline'
     script: |

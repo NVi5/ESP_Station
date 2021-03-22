@@ -99,5 +99,5 @@ Zadania nazywane również *taskami* będą dodawane bezpośrednio w systemie Az
 - [ ] Konfiguracja platformy do wizualizacji danych
 - [ ] Implementacja obsługi układu BME280
 - [ ] Implementacja funkcjonalności OTA over HTTPS
-- [ ] Implementacja wysyłania przesyłania danych requestami HTTP typu POST
+- [ ] Implementacja wysyłania przetworzonych danych requestami HTTP typu POST
 - [ ] Weryfikacja zaimplementowanych funkcjonalności.

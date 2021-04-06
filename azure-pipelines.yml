@@ -34,7 +34,7 @@ steps:
     password: '$(FTPPASS)'
     rootDirectory: '$(Build.ArtifactStagingDirectory)'
     filePatterns: '**'
-    remoteDirectory: '/htdocs/uploads'
+    remoteDirectory: '/public_html/uploads'
     clean: true
     preservePaths: false
     trustSSL: false

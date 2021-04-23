@@ -15,13 +15,13 @@
 #include "esp_http_client.h"
 #include "wifi_functions.h"
 
-#define D_SEC(x) ( ( x * 1000 ) / portTICK_PERIOD_MS )
-#define D_MIN(x) ( ( x * 1000 * 60 ) / portTICK_PERIOD_MS )
+#define D_SEC(x) ( x * 1000 / portTICK_PERIOD_MS )
+#define D_MIN(x) ( x * 1000 * 60 / portTICK_PERIOD_MS )
 
 /* URL to latest build version */
-#define HTTP_OTA_VERSION            "http://esp32ms.000webhostapp.com/uploads/latestBuildVersion.txt"
+#define HTTP_OTA_VERSION            "https://esp32ms.000webhostapp.com/uploads/latestBuildVersion.txt"
 /* URL to OTA bin file */
-#define HTTP_OTA_FILE               "http://esp32ms.000webhostapp.com/uploads/esp32.bin"
+#define HTTP_OTA_FILE               "https://esp32ms.000webhostapp.com/uploads/esp32.bin"
 /* HTTP buffer size */
 #define HTTP_BUFFER_SIZE            20
 /* OTA period check in minutes */

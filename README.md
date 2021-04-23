@@ -2,7 +2,7 @@
 
 ---
 
-##Autorzy
+## Autorzy
 
 - Jan Wołowiec
 - Szymon Głogowski
@@ -22,7 +22,7 @@ Na załączonym diagramie został przedstawiony sposób interakcji poszczególny
 
 ![Diagram interakcji elementów systemu](docs/diagram.png =1000x)
 
-### ESP32
+### ESP32-WROOM-32D
 Układ SoC oferujący możliwość komunikacji m.in. po WiFi oraz Bluetooth.
 
 ![ESP32](docs/esp32.jpg =500x)
@@ -92,12 +92,13 @@ Jak zostało wspomniane w poprzednim punkcie opcjonalnym rozwiązaniem jest pró
 ## Główne etapy projektu
 Zadania nazywane również *taskami* będą dodawane bezpośrednio w systemie Azure DevOps, natomiast poniżej zostały wylistowane ważniejsze etapy projektu:
 - [x] Zapoznanie się z wykorzystywanymi technologiami
-- [ ] Rozpisanie tasków
+- [x] Rozpisanie tasków
 - [x] Konfiguracja projektu w środowisku Azure
 - [x] Konfiguracja pipeline'ów
-- [ ] Konfiguracja web hostingu
-- [ ] Konfiguracja platformy do wizualizacji danych
+- [x] Konfiguracja web hostingu
+- [x] Konfiguracja platformy do wizualizacji danych
 - [ ] Implementacja obsługi układu BME280
-- [ ] Implementacja funkcjonalności OTA over HTTPS
+- [x] Implementacja funkcjonalności OTA over HTTPS
 - [ ] Implementacja wysyłania przetworzonych danych requestami HTTP typu POST
+- [ ] Stworzenie własnej platformy do wizualizacji danych
 - [ ] Weryfikacja zaimplementowanych funkcjonalności.

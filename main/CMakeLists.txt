@@ -1,4 +1,4 @@
-idf_component_register( SRCS "wifi_functions.c" "main.c"
+idf_component_register( SRCS "http.c" "ota.c" "wifi.c" "main.c"
                         INCLUDE_DIRS "."
                         EMBED_TXTFILES "cert.pem")
 

@@ -7,6 +7,8 @@
 #include "nvs.h"
 #include "nvs_flash.h"
 #include "ota.h"
+#include "sensor.h"
+#include "user_i2c.h"
 #include "wifi.h"
 
 static const char *TAG = "MAIN";
@@ -30,6 +32,8 @@ void app_main(void)
 
     app_init();
     wifi_init();
+    user_i2c_init();
 
     xTaskCreate(&ota_task, "ota_task", 8192, NULL, 5, NULL);
+    xTaskCreate(&sensor_task, "sensor_task", 8192, NULL, 5, NULL);
 }

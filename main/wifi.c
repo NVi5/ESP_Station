@@ -100,11 +100,11 @@ void wifi_init(void)
     /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually
      * happened. */
     if (bits & WIFI_CONNECTED_BIT) {
-        ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
-                 SSID, PASS);
+        ESP_LOGI(TAG, "connected to ap SSID:%s",
+                 SSID);
     } else if (bits & WIFI_FAIL_BIT) {
-        ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
-                 SSID, PASS);
+        ESP_LOGI(TAG, "Failed to connect to SSID:%s",
+                 SSID);
     } else {
         ESP_LOGE(TAG, "UNEXPECTED EVENT");
     }

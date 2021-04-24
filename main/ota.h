@@ -8,7 +8,7 @@
 /* URL to OTA bin file */
 #define HTTP_OTA_FILE               "https://esp32ms.000webhostapp.com/uploads/esp32.bin"
 /* OTA period check in minutes */
-#define OTA_CHECK_PERIOD            D_MIN(10)
+#define OTA_CHECK_PERIOD            D_MIN(60)
 /* OTA max length of build version string */
 #define OTA_VERSION_MAX_LEN         5
 /* FW VERSION buffer size */

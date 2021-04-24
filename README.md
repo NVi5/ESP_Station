@@ -97,8 +97,8 @@ Zadania nazywane również *taskami* będą dodawane bezpośrednio w systemie Az
 - [x] Konfiguracja pipeline'ów
 - [x] Konfiguracja web hostingu
 - [x] Konfiguracja platformy do wizualizacji danych
-- [ ] Implementacja obsługi układu BME280
+- [x] Implementacja obsługi układu BME280
 - [x] Implementacja funkcjonalności OTA over HTTPS
-- [ ] Implementacja wysyłania przetworzonych danych requestami HTTP typu POST
-- [ ] Stworzenie własnej platformy do wizualizacji danych
-- [ ] Weryfikacja zaimplementowanych funkcjonalności.
+- [x] Implementacja wysyłania przetworzonych danych requestami HTTP typu POST
+- [x] Weryfikacja zaimplementowanych funkcjonalności.
+- [ ] Opcjonalne stworzenie własnej platformy do wizualizacji danych

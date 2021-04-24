@@ -21,7 +21,7 @@ else()
 endif()
 
 if (DEFINED THINGER_IO_TOKEN)
-    add_definitions(-DTHINGER_IO_TOKEN=${THINGER_IO_TOKEN})
+    add_definitions(-DTHINGER_IO_TOKEN="${THINGER_IO_TOKEN}")
 else()
     add_definitions(-DTHINGER_IO_TOKEN="")
 endif()

@@ -6,8 +6,10 @@
 #include "freertos/task.h"
 #include "bme280_defs.h"
 #include "bme280.h"
+#include "http.h"
 
 static const char *TAG = "SENSOR";
+static const char *JSON = "{\"temperature\": %.2f, \"humidity\": %.2f, \"pressure\": %.2f}";
 static struct bme280_dev dev = {0};
 static uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
 static uint32_t req_delay;
@@ -54,6 +56,12 @@ static bool sensor_init(void)
 static void sensor_print_data(struct bme280_data *comp_data)
 {
     printf("Temp: %0.2f, Pressure: %0.2f, Humidity: %0.2f\r\n",comp_data->temperature, comp_data->pressure, comp_data->humidity);
+}
+
+static void sensor_get_json_from_data(struct bme280_data *comp_data, char *buffer)
+{
+    sprintf(buffer, JSON, comp_data->temperature, comp_data->humidity, comp_data->pressure);
+    ESP_LOGI(TAG, "JSON: %s", buffer);
 }
 
 static bool sensor_perform_measurement(struct bme280_data *comp_data)
@@ -142,6 +150,7 @@ static bool sensor_handle_measurement(struct bme280_data *comp_data)
 void sensor_task(void *pvParameters)
 {
     struct bme280_data comp_data;
+    char json[JSON_BUFFER_SIZE] = {0};
 
     if (sensor_init() == false)
     {
@@ -154,6 +163,8 @@ void sensor_task(void *pvParameters)
         if (sensor_handle_measurement(&comp_data))
         {
             ESP_LOGI(TAG, "Measurement succeeded, waiting %d ticks", SENSOR_READ_PERIOD);
+            sensor_get_json_from_data(&comp_data, json);
+            http_post_thinger_io(json);
             vTaskDelay(SENSOR_READ_PERIOD);
         }
         else

@@ -31,7 +31,7 @@ static void ota_perform_ota_update(void)
 
 static inline bool ota_get_remote_fw_version(char *buffer)
 {
-    return http_perform_request(HTTP_OTA_VERSION, buffer, server_root_cert_pem_start);
+    return http_get(HTTP_OTA_VERSION, buffer, server_root_cert_pem_start);
 }
 
 static bool ota_is_new_fw_available(void)

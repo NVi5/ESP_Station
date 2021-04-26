@@ -15,7 +15,7 @@ steps:
   inputs:
     dockerVersion: '20.10.5'
 
-- script: docker run -v $PWD:/project -w /project espressif/idf idf.py build -DSSID="$(WIFISSID)" -DPASS="$(WIFIPASS)" -DBUILD_VERSION=$(Build.BuildId) -DTHINGER_IO_TOKEN="$(THINGERTOKEN)"
+- script: docker run -v $PWD:/project -w /project espressif/idf idf.py build -DSSID="$(WIFISSID)" -DPASS="$(WIFIPASS)" -DBUILD_VERSION=$(Build.BuildId) -DTHINGER_IO_TOKEN="$(THINGERTOKEN)" -DTHINGSPEAK_TOKEN="$(THINGSPEAKTOKEN)"
   displayName: 'BuildProject'
 
 - task: PowerShell@2

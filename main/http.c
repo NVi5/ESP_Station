@@ -108,7 +108,7 @@ bool http_post_thinger_io(char *data_json)
 bool http_post_thingspeak(char *url_data)
 {
     esp_http_client_config_t config = {
-        .url = "https://api.thingspeak.com/update",
+        .url = "http://api.thingspeak.com/update",
         .event_handler = http_event_handler,
         .method = HTTP_METHOD_GET,
     };

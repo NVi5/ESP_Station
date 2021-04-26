@@ -10,7 +10,7 @@
 
 static const char *TAG = "SENSOR";
 static const char *JSON = "{\"temperature\": %.2f, \"humidity\": %.2f, \"pressure\": %.2f}";
-static const char *URL = "https://api.thingspeak.com/update?api_key=%s&field1=%.2f&field2=%.2f&field3=%.2f";
+static const char *URL = "http://api.thingspeak.com/update?api_key=%s&field1=%.2f&field2=%.2f&field3=%.2f";
 static struct bme280_dev dev = {0};
 static uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
 static uint32_t req_delay;

@@ -10,6 +10,7 @@
 
 static const char *TAG = "SENSOR";
 static const char *JSON = "{\"temperature\": %.2f, \"humidity\": %.2f, \"pressure\": %.2f}";
+static const char *URL = "https://api.thingspeak.com/update?api_key=%s&field1=%.2f&field2=%.2f&field3=%.2f";
 static struct bme280_dev dev = {0};
 static uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
 static uint32_t req_delay;
@@ -62,6 +63,12 @@ static void sensor_get_json_from_data(struct bme280_data *comp_data, char *buffe
 {
     sprintf(buffer, JSON, comp_data->temperature, comp_data->humidity, comp_data->pressure);
     ESP_LOGI(TAG, "JSON: %s", buffer);
+}
+
+static void sensor_get_url_from_data(struct bme280_data *comp_data, char *buffer)
+{
+    sprintf(buffer, URL, THINGSPEAK_TOKEN, comp_data->temperature, comp_data->humidity, comp_data->pressure);
+    ESP_LOGI(TAG, "URL: %s", buffer);
 }
 
 static bool sensor_perform_measurement(struct bme280_data *comp_data)
@@ -151,6 +158,7 @@ void sensor_task(void *pvParameters)
 {
     struct bme280_data comp_data;
     char json[JSON_BUFFER_SIZE] = {0};
+    char url[URL_BUFFER_SIZE] = {0};
 
     if (sensor_init() == false)
     {
@@ -164,7 +172,9 @@ void sensor_task(void *pvParameters)
         {
             ESP_LOGI(TAG, "Measurement succeeded, waiting %d ticks", SENSOR_READ_PERIOD);
             sensor_get_json_from_data(&comp_data, json);
+            sensor_get_url_from_data(&comp_data, url);
             http_post_thinger_io(json);
+            http_post_thingspeak(url);
             vTaskDelay(SENSOR_READ_PERIOD);
         }
         else

@@ -114,7 +114,7 @@ static bool sensor_verify_measurement(struct bme280_data *comp_data)
         number_of_retries = 0;
         return true;
     }
-    if ((last_press - comp_data->pressure) > 0.5f || (last_press - comp_data->pressure) < -0.5f)
+    if ((last_press - comp_data->pressure) > PRESSURE_HYSTERESIS || (last_press - comp_data->pressure) < -PRESSURE_HYSTERESIS)
     {
         ESP_LOGW(TAG, "last_press=%f, new_press=%f",last_press, comp_data->pressure);
         if (number_of_retries > MAX_MEAS_RETRIES)

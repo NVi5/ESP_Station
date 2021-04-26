@@ -11,6 +11,8 @@
 #define JSON_BUFFER_SIZE               80
 /* URL buffer size */
 #define URL_BUFFER_SIZE                120
+/* Set pressure hysteresis */
+#define PRESSURE_HYSTERESIS            0.2f
 
 /* Task responsible for handling sensor update */
 void sensor_task(void *pvParameters);

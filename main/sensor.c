@@ -11,7 +11,7 @@
 static const char *TAG = "SENSOR";
 static const char *JSON = "{\"temperature\": %.2f, \"humidity\": %.2f, \"pressure\": %.2f}";
 static const char *THINGSPEAK_URL = "http://api.thingspeak.com/update?api_key=%s&field1=%.2f&field2=%.2f&field3=%.2f";
-static const char *CUSTOM_URL = "https://esp32ms.000webhostapp.com/add_data.php?temp=%.2f&humi=%.2f&pres=%.2f";
+static const char *CUSTOM_URL = "http://esp32ms.000webhostapp.com/add_data.php?temp=%.2f&humi=%.2f&pres=%.2f";
 static struct bme280_dev dev = {0};
 static uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
 static uint32_t req_delay;

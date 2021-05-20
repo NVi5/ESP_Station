@@ -7,10 +7,8 @@
 #define SENSOR_RETRY_PERIOD            D_SEC(3)
 /* SENSOR period read in minutes */
 #define SENSOR_READ_PERIOD             D_MIN(1)
-/* JSON buffer size */
-#define JSON_BUFFER_SIZE               80
-/* URL buffer size */
-#define URL_BUFFER_SIZE                120
+/* Buffer size */
+#define BUFFER_SIZE                    120
 /* Set pressure hysteresis */
 #define PRESSURE_HYSTERESIS            0.2f
 

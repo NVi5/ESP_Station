@@ -63,6 +63,7 @@ bool http_get(const char *url, char *buffer, const char *cert)
         .event_handler = http_event_handler,
         .user_data = buffer,
         .cert_pem = cert,
+        .method = HTTP_METHOD_GET,
     };
     esp_http_client_handle_t client = esp_http_client_init(&config);
     esp_err_t err = esp_http_client_perform(client);
@@ -91,29 +92,6 @@ bool http_post_thinger_io(char *data_json)
     esp_http_client_set_header(client, "Content-Type", "application/json");
     esp_http_client_set_header(client, "Authorization", THINGER_IO_TOKEN);
     esp_http_client_set_post_field(client, data_json, strlen(data_json));
-    esp_err_t err = esp_http_client_perform(client);
-
-    if (err != ESP_OK)
-    {
-        ESP_LOGE(TAG, "HTTP GET request failed: %s", esp_err_to_name(err));
-        return false;
-    }
-
-    ESP_LOGI(TAG, "HTTP GET Status = %d, content_length = %d", esp_http_client_get_status_code(client), esp_http_client_get_content_length(client));
-    esp_http_client_cleanup(client);
-
-    return true;
-}
-
-bool http_post_thingspeak(char *url_data)
-{
-    esp_http_client_config_t config = {
-        .url = "http://api.thingspeak.com/update",
-        .event_handler = http_event_handler,
-        .method = HTTP_METHOD_GET,
-    };
-    esp_http_client_handle_t client = esp_http_client_init(&config);
-    esp_http_client_set_url(client, url_data);
     esp_err_t err = esp_http_client_perform(client);
 
     if (err != ESP_OK)

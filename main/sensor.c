@@ -10,7 +10,8 @@
 
 static const char *TAG = "SENSOR";
 static const char *JSON = "{\"temperature\": %.2f, \"humidity\": %.2f, \"pressure\": %.2f}";
-static const char *URL = "http://api.thingspeak.com/update?api_key=%s&field1=%.2f&field2=%.2f&field3=%.2f";
+static const char *THINGSPEAK_URL = "http://api.thingspeak.com/update?api_key=%s&field1=%.2f&field2=%.2f&field3=%.2f";
+static const char *CUSTOM_URL = "https://esp32ms.000webhostapp.com/add_data.php?temp=%.2f&humi=%.2f&pres=%.2f";
 static struct bme280_dev dev = {0};
 static uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
 static uint32_t req_delay;
@@ -65,9 +66,15 @@ static void sensor_get_json_from_data(struct bme280_data *comp_data, char *buffe
     ESP_LOGI(TAG, "JSON: %s", buffer);
 }
 
-static void sensor_get_url_from_data(struct bme280_data *comp_data, char *buffer)
+static void sensor_get_thingspeak_url_from_data(struct bme280_data *comp_data, char *buffer)
 {
-    sprintf(buffer, URL, THINGSPEAK_TOKEN, comp_data->temperature, comp_data->humidity, comp_data->pressure);
+    sprintf(buffer, THINGSPEAK_URL, THINGSPEAK_TOKEN, comp_data->temperature, comp_data->humidity, comp_data->pressure);
+    ESP_LOGI(TAG, "URL: %s", buffer);
+}
+
+static void sensor_get_custom_url_from_data(struct bme280_data *comp_data, char *buffer)
+{
+    sprintf(buffer, CUSTOM_URL, comp_data->temperature, comp_data->humidity, comp_data->pressure);
     ESP_LOGI(TAG, "URL: %s", buffer);
 }
 
@@ -157,8 +164,7 @@ static bool sensor_handle_measurement(struct bme280_data *comp_data)
 void sensor_task(void *pvParameters)
 {
     struct bme280_data comp_data;
-    char json[JSON_BUFFER_SIZE] = {0};
-    char url[URL_BUFFER_SIZE] = {0};
+    char buffer[BUFFER_SIZE] = {0};
 
     if (sensor_init() == false)
     {
@@ -171,10 +177,12 @@ void sensor_task(void *pvParameters)
         if (sensor_handle_measurement(&comp_data))
         {
             ESP_LOGI(TAG, "Measurement succeeded, waiting %d ticks", SENSOR_READ_PERIOD);
-            sensor_get_json_from_data(&comp_data, json);
-            sensor_get_url_from_data(&comp_data, url);
-            http_post_thinger_io(json);
-            http_post_thingspeak(url);
+            sensor_get_json_from_data(&comp_data, buffer);
+            http_post_thinger_io(buffer);
+            sensor_get_thingspeak_url_from_data(&comp_data, buffer);
+            http_get(buffer, NULL, NULL);
+            sensor_get_custom_url_from_data(&comp_data, buffer);
+            http_get(buffer, NULL, NULL);
             vTaskDelay(SENSOR_READ_PERIOD);
         }
         else

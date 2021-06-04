@@ -101,4 +101,4 @@ Zadania nazywane również *taskami* będą dodawane bezpośrednio w systemie Az
 - [x] Implementacja funkcjonalności OTA over HTTPS
 - [x] Implementacja wysyłania przetworzonych danych requestami HTTP typu POST
 - [x] Weryfikacja zaimplementowanych funkcjonalności.
-- [ ] Opcjonalne stworzenie własnej platformy do wizualizacji danych
+- [x] Opcjonalne stworzenie własnej platformy do wizualizacji danych

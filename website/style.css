@@ -1,0 +1,76 @@
+body{
+	background-color: black;
+}
+
+#top{
+	width: 1024px;
+	height: 16px;
+	margin: 8px auto;
+	padding: 16px 32px;
+	background-color: #202020;
+	color: #F0F0F0;
+	position: sticky;
+	top:0;
+	border: 5px solid black;
+	z-index:100;
+}
+
+#center{
+	width: 1024px;
+	margin: 8px auto;
+	padding: 16px 32px;
+	background-color: #202020;
+	color: #F0F0F0;
+}
+
+#values{
+	width: 1024px;
+}
+
+.value{
+	width: 30%;
+	height: 100px;
+	padding: 8px 12px;
+	margin: auto;
+	border: 1px solid white;
+}
+
+#temp{
+	float: left;
+}
+
+#humi{
+	float: center;
+}
+
+#pres{
+	float: right;
+}
+
+.number{
+	margin: 10px 30px;
+	font-size: 3.2em;
+	text-align: right;
+}
+
+#plots{
+	width: 1024px;
+	height: 1336px;
+}
+
+.plot{
+	width: 97%;
+	height: 31%;
+	margin: 10px auto;
+	padding: 10px 10px;
+	border: 1px solid white;
+}
+
+#bottom{
+	width: 1024px;
+	height: 36px;
+	margin: 8px auto;
+	padding: 16px 32px;
+	background-color: #202020;
+	color: #F0F0F0;
+}

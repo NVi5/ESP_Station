@@ -10,7 +10,7 @@ if( $conn -> connect_error ){
   die( "Connection failed: " . $conn -> connect_error );
 }
 
-$sql = "INSERT INTO `000_test_czujnik`(`date`, `temp`, `humi`, `pres`) VALUES ( CURRENT_TIMESTAMP + 20000, ?, ?, ? )";
+$sql = "INSERT INTO `000_test_czujnik`(`date`, `temp`, `humi`, `pres`) VALUES ( DATE_ADD( CURRENT_TIMESTAMP, INTERVAL 2 HOUR ), ?, ?, ? )";
 $stmt = $conn -> prepare($sql);
 $stmt -> bind_param( "sss",  $_GET['temp'], $_GET['humi'], $_GET['pres'] );
 $stmt -> execute();

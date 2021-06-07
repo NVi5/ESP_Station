@@ -5,7 +5,7 @@ $password = "password";    # password for this user
 $dbname = "id16483562_test";
 
 $conn = new mysqli( $servername, $username, $password, $dbname );
-$RESULT_NOW = $conn -> query("SELECT `date`, `temp`, `humi`, `pres` FROM `000_test_czujnik` WHERE `date` BETWEEN CURRENT_TIMESTAMP - 0000100 + 0020000 AND CURRENT_TIMESTAMP - 0000000 + 0020000") -> fetch_assoc();
+$RESULT_NOW = $conn -> query("SELECT `date`, `temp`, `humi`, `pres` FROM `000_test_czujnik` WHERE `date` BETWEEN DATE_ADD( CURRENT_TIMESTAMP, INTERVAL 7130 HOUR_SECOND ) AND DATE_ADD( CURRENT_TIMESTAMP, INTERVAL 2 HOUR )") -> fetch_assoc();
 
 echo json_encode($RESULT_NOW);
 

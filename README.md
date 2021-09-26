@@ -1,5 +1,8 @@
 # ESP32 Measurement Station
 
+Z racji utraty dostępu do uczelnianego konta Azure, dodaję tu kopię repozytorium projektu.
+
+Link do raportu: [Raport](docs/ESP32_Measurement_Station___Documentation.pdf)
 ---
 
 ## Autorzy
@@ -20,17 +23,17 @@ Dodatkową funkcjonalnością systemu jest wykorzystanie aktualizacji OTA, sprz�
 ## Bloki funkcjonalne systemu
 Na załączonym diagramie został przedstawiony sposób interakcji poszczególnych bloków ze sobą. Opis poszczególnych bloków znajduje się poniżej.
 
-![Diagram interakcji elementów systemu](docs/diagram.png =1000x)
+![Diagram interakcji elementów systemu](docs/diagram.png)
 
 ### ESP32-WROOM-32D
 Układ SoC oferujący możliwość komunikacji m.in. po WiFi oraz Bluetooth.
 
-![ESP32](docs/esp32.jpg =500x)
+![ESP32](docs/esp32.jpg)
 
 ### BME280
 Sensor firmy Bosch realizujący pomiary ciśnienia, temperatury i wilgotności. Wykorzystuje on do komunikacji z układem ESP32 magistralę I2C.
 
-![BME280](docs/bme280.jpg =500x)
+![BME280](docs/bme280.jpg)
 
 ### Azure repository
 Repozytorium **GIT** znajdujące się na platformie **Azure DevOps**. Wszelkie wprowadzanie zmian powinno być realizowane na prywantych branch'ach, 
